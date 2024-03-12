@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Encriptador y Desencriptador</title>
+
+</head>
+<body>
+
+    <h1>Encriptador y Desencriptador</h1>
+
+    <textarea id="inputText" placeholder="Ingrese el texto"></textarea><br
+
+    <label for="action">Seleccione la acción:</label>
+    <select id="action">
+        <option value="encrypt">Encriptar</option>
+        <option value="decrypt">Desencriptar</option>
+    </select><br>
+
+    <button onclick="processText()">Procesar</button>
+
+    <h1>Resultado:</h1>
+    <textarea id="outputText" readonly></textarea><br>
+
+    <button onclick="copyToClipboard()">Copiar resultado</button>
+
+    <script>
+        function processText() {
+            var inputText = document.getElementById('inputText').value;
+            var action = document.getElementById('action').value;
+            var outputText = '';
+
+            if (action === 'encrypt') {
+                outputText = encryptText(inputText);
+            } else {
+                outputText = decryptText(inputText);
+            }
+
+            document.getElementById('outputText').value = outputText;
+        }
+
+        function encryptText(text) {
+            // Aplicar la encriptación según las reglas proporcionadas
+            return text.replace(/e/g, 'enter')
+                       .replace(/i/g, 'imes')
+                       .replace(/a/g, 'ai')
+                       .replace(/o/g, 'ober')
+                       .replace(/u/g, 'ufat');
+        }
+
+        function decryptText(text) {
+            // Aplicar la desencriptación según las reglas proporcionadas
+            return text.replace(/enter/g, 'e')
+                       .replace(/imes/g, 'i')
+                       .replace(/ai/g, 'a')
+                       .replace(/ober/g, 'o')
+                       .replace(/ufat/g, 'u');
+        }
+
+        function copyToClipboard() {
+            var outputText = document.getElementById('outputText');
+            outputText.select();
+            document.execCommand('copy');
+            alert('Texto copiado al portapapeles');
+        }
+    </script>
+
+</body>
+</html>
